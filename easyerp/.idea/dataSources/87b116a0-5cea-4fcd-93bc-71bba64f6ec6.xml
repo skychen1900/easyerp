@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="easyerp@cnwbzp1237.cn.dst.ibm.com">
+  <database-model serializer="dbm" rdbms="MYSQL" format-version="4.0">
+    <root id="1"/>
+    <schema id="2" parent="1" name="easyerp">
+      <Current>1</Current>
+      <Visible>1</Visible>
+    </schema>
+    <schema id="3" parent="1" name="information_schema"/>
+    <schema id="4" parent="1" name="mysql"/>
+    <schema id="5" parent="1" name="performance_schema"/>
+    <schema id="6" parent="1" name="sys"/>
+    <table id="7" parent="2" name="seq_customerno"/>
+    <table id="8" parent="2" name="tb_customer"/>
+    <table id="9" parent="2" name="tb_order"/>
+    <table id="10" parent="2" name="tb_product"/>
+    <table id="11" parent="2" name="tb_producttype"/>
+    <table id="12" parent="2" name="tb_quotation"/>
+    <table id="13" parent="2" name="tb_user"/>
+    <column id="14" parent="7" name="customerNO">
+      <Position>1</Position>
+      <DataType>varchar(50)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="15" parent="7" name="current_value">
+      <Position>2</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="16" parent="7" name="increment">
+      <Position>3</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;1&apos;</DefaultExpression>
+    </column>
+    <key id="17" parent="7" name="PRIMARY">
+      <ColNames>customerNO</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="18" parent="8" name="customerNO">
+      <Position>1</Position>
+      <DataType>varchar(20)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="19" parent="8" name="address">
+      <Position>2</Position>
+      <DataType>varchar(30)|0</DataType>
+      <DefaultExpression>&apos;(NULL)&apos;</DefaultExpression>
+    </column>
+    <column id="20" parent="8" name="customerName">
+      <Position>3</Position>
+      <DataType>varchar(15)|0</DataType>
+      <DefaultExpression>&apos;(NULL)&apos;</DefaultExpression>
+    </column>
+    <column id="21" parent="8" name="otherInfo">
+      <Position>4</Position>
+      <DataType>varchar(30)|0</DataType>
+      <DefaultExpression>&apos;(NULL)&apos;</DefaultExpression>
+    </column>
+    <column id="22" parent="8" name="phone">
+      <Position>5</Position>
+      <DataType>varchar(15)|0</DataType>
+      <DefaultExpression>&apos;(NULL)&apos;</DefaultExpression>
+    </column>
+    <column id="23" parent="8" name="relationman">
+      <Position>6</Position>
+      <DataType>varchar(15)|0</DataType>
+      <DefaultExpression>&apos;(NULL)&apos;</DefaultExpression>
+    </column>
+    <key id="24" parent="8" name="PRIMARY">
+      <ColNames>customerNO</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="25" parent="9" name="orderNO">
+      <Position>1</Position>
+      <DataType>varchar(10)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="26" parent="9" name="orderTime">
+      <Position>2</Position>
+      <DataType>datetime|0</DataType>
+    </column>
+    <column id="27" parent="9" name="otherInfo">
+      <Position>3</Position>
+      <DataType>varchar(50)|0</DataType>
+      <DefaultExpression>&apos;(NULL)&apos;</DefaultExpression>
+    </column>
+    <column id="28" parent="9" name="quantity">
+      <Position>4</Position>
+      <DataType>varchar(10)|0</DataType>
+      <DefaultExpression>&apos;(NULL)&apos;</DefaultExpression>
+    </column>
+    <column id="29" parent="9" name="customerNO">
+      <Position>5</Position>
+      <DataType>varchar(20)|0</DataType>
+      <DefaultExpression>&apos;(NULL)&apos;</DefaultExpression>
+    </column>
+    <column id="30" parent="9" name="productNO">
+      <Position>6</Position>
+      <DataType>varchar(15)|0</DataType>
+      <DefaultExpression>&apos;(NULL)&apos;</DefaultExpression>
+    </column>
+    <index id="31" parent="9" name="FKFA98EE3D652AF8BA">
+      <ColNames>productNO</ColNames>
+    </index>
+    <index id="32" parent="9" name="FKFA98EE3DD96DD882">
+      <ColNames>customerNO</ColNames>
+    </index>
+    <key id="33" parent="9" name="PRIMARY">
+      <ColNames>orderNO</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="34" parent="9" name="FKFA98EE3DD96DD882">
+      <ColNames>customerNO</ColNames>
+      <RefSchemaName>easyerp</RefSchemaName>
+      <RefTableName>tb_customer</RefTableName>
+      <RefColNames>customerNO</RefColNames>
+      <OnUpdate>no-action</OnUpdate>
+      <OnDelete>no-action</OnDelete>
+    </foreign-key>
+    <foreign-key id="35" parent="9" name="FKFA98EE3D652AF8BA">
+      <ColNames>productNO</ColNames>
+      <RefSchemaName>easyerp</RefSchemaName>
+      <RefTableName>tb_product</RefTableName>
+      <RefColNames>productNO</RefColNames>
+      <OnUpdate>no-action</OnUpdate>
+      <OnDelete>no-action</OnDelete>
+    </foreign-key>
+    <column id="36" parent="10" name="productNO">
+      <Position>1</Position>
+      <DataType>varchar(15)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="37" parent="10" name="otherInfo">
+      <Position>2</Position>
+      <DataType>varchar(50)|0</DataType>
+      <DefaultExpression>&apos;(NULL)&apos;</DefaultExpression>
+    </column>
+    <column id="38" parent="10" name="price">
+      <Position>3</Position>
+      <DataType>decimal(10,2)|0</DataType>
+      <DefaultExpression>&apos;0.00&apos;</DefaultExpression>
+    </column>
+    <column id="39" parent="10" name="producingArea">
+      <Position>4</Position>
+      <DataType>varchar(20)|0</DataType>
+      <DefaultExpression>&apos;(NULL)&apos;</DefaultExpression>
+    </column>
+    <column id="40" parent="10" name="productName">
+      <Position>5</Position>
+      <DataType>varchar(20)|0</DataType>
+      <DefaultExpression>&apos;(NULL)&apos;</DefaultExpression>
+    </column>
+    <column id="41" parent="10" name="productOwner">
+      <Position>6</Position>
+      <DataType>varchar(20)|0</DataType>
+      <DefaultExpression>&apos;(NULL)&apos;</DefaultExpression>
+    </column>
+    <column id="42" parent="10" name="quantity">
+      <Position>7</Position>
+      <DataType>int(11)|0</DataType>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+    </column>
+    <column id="43" parent="10" name="unit">
+      <Position>8</Position>
+      <DataType>varchar(20)|0</DataType>
+      <DefaultExpression>&apos;(NULL)&apos;</DefaultExpression>
+    </column>
+    <column id="44" parent="10" name="producttypeNO">
+      <Position>9</Position>
+      <DataType>varchar(15)|0</DataType>
+      <DefaultExpression>&apos;(NULL)&apos;</DefaultExpression>
+    </column>
+    <index id="45" parent="10" name="FKED97341E7C52804E">
+      <ColNames>producttypeNO</ColNames>
+    </index>
+    <key id="46" parent="10" name="PRIMARY">
+      <ColNames>productNO</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="47" parent="10" name="FKED97341E7C52804E">
+      <ColNames>producttypeNO</ColNames>
+      <RefSchemaName>easyerp</RefSchemaName>
+      <RefTableName>tb_producttype</RefTableName>
+      <RefColNames>producttypeNO</RefColNames>
+      <OnUpdate>no-action</OnUpdate>
+      <OnDelete>no-action</OnDelete>
+    </foreign-key>
+    <column id="48" parent="11" name="producttypeNO">
+      <Position>1</Position>
+      <DataType>varchar(15)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="49" parent="11" name="producttypeName">
+      <Position>2</Position>
+      <DataType>varchar(20)|0</DataType>
+      <DefaultExpression>&apos;(NULL)&apos;</DefaultExpression>
+    </column>
+    <key id="50" parent="11" name="PRIMARY">
+      <ColNames>producttypeNO</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="51" parent="12" name="quotationNO">
+      <Position>1</Position>
+      <DataType>varchar(15)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="52" parent="12" name="otherInfo">
+      <Position>2</Position>
+      <DataType>varchar(50)|0</DataType>
+      <DefaultExpression>&apos;(NULL)&apos;</DefaultExpression>
+    </column>
+    <column id="53" parent="12" name="quotationMan">
+      <Position>3</Position>
+      <DataType>varchar(15)|0</DataType>
+      <DefaultExpression>&apos;(NULL)&apos;</DefaultExpression>
+    </column>
+    <column id="54" parent="12" name="quotationTime">
+      <Position>4</Position>
+      <DataType>datetime|0</DataType>
+    </column>
+    <column id="55" parent="12" name="customerNO">
+      <Position>5</Position>
+      <DataType>varchar(20)|0</DataType>
+      <DefaultExpression>&apos;(NULL)&apos;</DefaultExpression>
+    </column>
+    <column id="56" parent="12" name="productNO">
+      <Position>6</Position>
+      <DataType>varchar(15)|0</DataType>
+    </column>
+    <index id="57" parent="12" name="FKCABDECFB652AF8BA">
+      <ColNames>productNO</ColNames>
+    </index>
+    <index id="58" parent="12" name="FKCABDECFBD96DD882">
+      <ColNames>customerNO</ColNames>
+    </index>
+    <key id="59" parent="12" name="PRIMARY">
+      <ColNames>quotationNO</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="60" parent="12" name="FKCABDECFBD96DD882">
+      <ColNames>customerNO</ColNames>
+      <RefSchemaName>easyerp</RefSchemaName>
+      <RefTableName>tb_customer</RefTableName>
+      <RefColNames>customerNO</RefColNames>
+      <OnUpdate>no-action</OnUpdate>
+      <OnDelete>no-action</OnDelete>
+    </foreign-key>
+    <foreign-key id="61" parent="12" name="FKCABDECFB652AF8BA">
+      <ColNames>productNO</ColNames>
+      <RefSchemaName>easyerp</RefSchemaName>
+      <RefTableName>tb_product</RefTableName>
+      <RefColNames>productNO</RefColNames>
+      <OnUpdate>no-action</OnUpdate>
+      <OnDelete>no-action</OnDelete>
+    </foreign-key>
+    <column id="62" parent="13" name="username">
+      <Position>1</Position>
+      <DataType>varchar(18)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="63" parent="13" name="grade">
+      <Position>2</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+    </column>
+    <column id="64" parent="13" name="password">
+      <Position>3</Position>
+      <DataType>varchar(32)|0</DataType>
+      <DefaultExpression>&apos;(NULL)&apos;</DefaultExpression>
+    </column>
+    <column id="65" parent="13" name="gradeName">
+      <Position>4</Position>
+      <DataType>varchar(45)|0</DataType>
+    </column>
+    <column id="66" parent="13" name="lastlogintime">
+      <Position>5</Position>
+      <DataType>timestamp(6)|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>CURRENT_TIMESTAMP(6)</DefaultExpression>
+    </column>
+    <key id="67" parent="13" name="PRIMARY">
+      <ColNames>username</ColNames>
+      <Primary>1</Primary>
+    </key>
+  </database-model>
+</dataSource>

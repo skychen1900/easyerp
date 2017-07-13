@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="c08965df-35e6-4d38-b6ec-0c98197759ac" name="tomcat-localhost" url="http://localhost:8080/easyerp">
+        <fileTransfer port="0" mountedRoot="C:\CIRIUS\apache-tomcat-8.0.39\webapps\easyerp" accessType="MOUNT" />
+      </webServer>
+      <webServer id="d3adc07c-f793-4c4a-8ccf-994e56f305ab" name="tomcat-remote" url="http://cnwbzp1237.cn.dst.ibm.com">
+        <fileTransfer host="cnwbzp1237.cn.dst.ibm.com" port="22" accessType="SFTP">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN" "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+
+	<constant name="struts.objectFactory" value="spring" />
+	
+	<constant name="struts.action.extension" value="do" />
+	
+	<constant name="struts.devMode" value="false" />
+	
+	<constant name="struts.configuration.xml.reload" value="true" />
+	
+	<constant name="struts.serve.static.browserCache" value="false" />
+	
+	<constant name="struts.i18n.encoding" value="utf-8" />
+	
+	<constant name="struts.i18n.reload" value="true" />
+	
+	<constant name="struts.multipart.maxSize" value="104857600" />
+	
+	<constant name="struts.enable.DynamicMethodInvocation" value="true" />
+	
+	<constant name="struts.enable.SlashesInActionNames" value="false" />
+	
+	<constant name="struts.tag.altSyntax" value="true" />
+	
+	<constant name="struts.dispatcher.parametersWorkaround" value="false" />
+    
+    <constant name="struts.custom.i18n.resources" value="aplMessage" />
+    
+    <!-- ================= 以上部分は修正しない ============================ -->
+    
+	<!-- 用户登录 -->
+	<package name="san" namespace="/" extends="struts-default">
+			<action name="loginAction" class="com.ibm.easyerp.action.LoginAction" >
+				<result name="loginUI">/jsp/login.jsp</result>
+				<result name="success">/jsp/index.jsp</result>
+				<result name="input">/jsp/login.jsp</result>
+				<result name="logoff">/jsp/login.jsp</result>
+				<result name="error">/jsp/common/error.jsp</result>
+				<result name="welcome">/jsp/welcome.jsp</result>
+			</action>
+			
+			<action name="createImageAction" class="com.ibm.easyerp.action.CreateImageAction">
+				<result name="success" type="stream">
+					<param name="contentType">image/jpeg</param>
+					<param name="inputName">inputStream</param>
+				</result>
+			</action>
+			
+	</package>
+	
+    <!-- 控制相关模块 -->
+	<package name="basePackage" namespace="/" extends="struts-default">
+	
+		<interceptors><!--配置拦截器 -->
+			<interceptor name="loginIntercepter"			
+				         class="com.ibm.easyerp.intercepter.LoginIntercepter" /><!--配置登录判断拦截器-->
+			<interceptor-stack name="mydefault"><!--配置拦截器栈-->
+				<interceptor-ref name="token"> <!--表单重复提交拦截器 -->
+					<param name="includeMethods">add</param>
+					<param name="excludeMethods"></param>
+				</interceptor-ref>
+				<interceptor-ref name="loginIntercepter" /><!--登录判断拦截器 -->
+				<interceptor-ref name="defaultStack" /><!--Struts 2默认拦截器 -->
+			</interceptor-stack>
+		</interceptors>
+ 
+		<default-interceptor-ref name="mydefault" /><!--配置默认拦截器-->
+		
+		<global-results>
+			<result name="pub_add_success">/jsp/common/pub_add_success.jsp</result>
+			<result name="pub_update_success">/jsp/common/pub_update_success.jsp</result>
+			<result name="pub_del_success">/jsp/common/pub_del_success.jsp</result>
+			<result name="invalid.token">/jsp/common/error_token.jsp</result>
+			<result name="error">/jsp/common/error.jsp</result>
+			<result name="success">/jsp/index.jsp</result>
+			<result name="login">/jsp/login.jsp</result>
+			<result name="logoff">/jsp/login.jsp</result>
+            <result name="building">/jsp/common/building.jsp</result>
+		</global-results>
+		
+		<!-- 客户显示 -->
+		<action name="customerAction" class="com.ibm.easyerp.action.CustomerAction">
+			<result name="customerList">/jsp/customer/customer_list.jsp</result>
+		</action>
+		
+		<!-- 客户管理 -->
+		<action name="customerManageAction" class="com.ibm.easyerp.action.CustomerManageAction">
+			<result name="add">/jsp/customer/customer_add.jsp</result>
+			<result name="update">/jsp/customer/customer_update.jsp</result>
+			<result name="query">/jsp/customer/customer_query.jsp</result>
+			<result name="customerList" type="redirectAction">customerAction!getCustomerAll.do</result>
+		</action>
+
+        <!-- 订单显示 -->
+        <action name="orderAction" class="com.ibm.easyerp.action.OrderAction">
+            <result name="orderList">/jsp/order/order_list.jsp</result>
+        </action>
+
+        <!-- 订单管理 -->
+        <action name="orderManageAction" class="com.ibm.easyerp.action.OrderManageAction">
+            <result name="add">/jsp/order/order_add.jsp</result>
+            <result name="update">/jsp/order/order_update.jsp</result>
+            <result name="query">/jsp/order/order_query.jsp</result>
+            <result name="orderList" type="redirectAction">orderAction!getOrderAll.do</result>
+        </action>
+		
+		<!-- 用户管理 -->
+		<action name="userAction" class="com.ibm.easyerp.action.UserAction">
+			<result name="userList">/jsp/user/user_list.jsp</result>
+			<result name="updateUI">/jsp/user/user_update.jsp</result>
+			<result name="updatepwd">/jsp/user/user_updatepwd.jsp</result>
+			<result name="addUI">/jsp/user/user_add.jsp</result>
+			<result name="helpUI">/jsp/help.jsp</result>
+		</action>
+	</package>
+
+</struts>

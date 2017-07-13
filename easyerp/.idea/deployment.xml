@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PublishConfigData" serverName="tomcat-remote" showEqualInSync="true">
+    <serverData>
+      <paths name="tomcat-localhost">
+        <serverdata>
+          <mappings>
+            <mapping deploy="\" local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="tomcat-remote">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/opt/apache-tomcat-8.0.39/webapps/easyerp" local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+    </serverData>
+  </component>
+</project>

@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ibm.easyerp.dao.CustomerMapper" >
+
+  <resultMap id="BaseResultMap" type="com.ibm.easyerp.model.Customer" >
+    <id column="customerNO" property="customerNO" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="customerName" property="customerName" jdbcType="VARCHAR" />
+    <result column="otherInfo" property="otherInfo" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="relationman" property="relationman" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    customerNO, address, customerName, otherInfo, phone, relationman
+  </sql>
+  <sql id="Example_Where_Clause">
+		<where>
+			<if test="customerNO != null">
+				customerNO like CONCAT('%',#{customerNO,jdbcType=VARCHAR},'%')
+			</if>
+			<if test="address != null">
+				AND address like CONCAT('%',#{address,jdbcType=VARCHAR},'%')
+			</if>
+			<if test="customerName != null">
+				AND customerName like CONCAT('%',#{customerName,jdbcType=VARCHAR},'%')
+			</if>
+			<if test="otherInfo != null">
+				AND otherInfo like CONCAT('%',#{otherInfo,jdbcType=VARCHAR},'%') 
+			</if>
+			<if test="phone != null">
+				AND phone like CONCAT('%',#{phone,jdbcType=VARCHAR},'%')
+			</if>
+			<if test="relationman != null">
+				AND relationman like CONCAT('%',#{relationman,jdbcType=VARCHAR},'%')
+			</if>
+		</where>
+	</sql>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_customer
+    where customerNO = #{customerNO,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="getTotal" parameterType="com.ibm.easyerp.model.Customer" resultType="java.lang.Integer">
+  	select count(customerNO) from tb_customer
+  	<include refid="Example_Where_Clause" />
+  </select>
+
+  <select id="getAll" resultMap="BaseResultMap" parameterType="com.ibm.easyerp.util.PageView">
+  	select customerNO, address, customerName, otherInfo, phone, relationman
+  	from tb_customer
+	<if test="sort != null" >
+      ORDER BY #{sort} #{order}
+    </if>
+ 	<if test="page!=null">
+		LIMIT #{begin},#{end}
+	</if>
+  </select>
+  
+  <resultMap type="com.ibm.easyerp.model.Customer" id="customerResultMap2" extends="BaseResultMap">
+  		<id property="customerNO" column="customerNO"/>
+  		<result property="address" column="address"/>
+  		<result property="customerName" column="customerName"/>
+  </resultMap>
+  <select id="getAll2" resultMap="customerResultMap2" parameterType="com.ibm.easyerp.model.Customer">
+  	select customerNO, address, customerName, otherInfo, phone, relationman
+  	from tb_customer
+  	<include refid="Example_Where_Clause" />
+	<if test="sort != null" >
+      ORDER BY #{sort} #{order}
+    </if>
+ 	<if test="page!=null">
+		LIMIT #{begin},#{end}
+	</if>
+  </select>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="com.ibm.easyerp.model.Customer" >
+    update tb_customer
+    <set >
+      <if test="customerNO != null" >
+        c_Login_name = #{customerNO,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        c_password = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="customerName != null" >
+        c_name = #{customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="otherInfo != null" >
+        c_Email = #{otherInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="relationman != null" >
+        c_Address = #{relationman,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where customerNO = #{customerNO,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ibm.easyerp.model.Customer" >
+    update tb_customer
+    set address = #{address,jdbcType=VARCHAR},
+      customerName = #{customerName,jdbcType=VARCHAR},
+      otherInfo = #{otherInfo,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      relationman = #{relationman,jdbcType=VARCHAR}
+    where customerNO = #{customerNO,jdbcType=VARCHAR}
+  </update>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from tb_customer
+    where customerNO = #{customerNO,jdbcType=VARCHAR}
+  </delete>
+  
+  <insert id="insert" parameterType="com.ibm.easyerp.model.Customer" >
+    insert into tb_customer (customerNO, address, customerName, otherInfo, phone, relationman)
+    values (#{customerNO,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR},#{customerName,jdbcType=VARCHAR},
+            #{otherInfo,jdbcType=VARCHAR},#{phone,jdbcType=VARCHAR},#{relationman,jdbcType=VARCHAR})
+  </insert>
+  
+</mapper>
